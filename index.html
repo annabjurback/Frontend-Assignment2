@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture searcher</title>
+    <link rel="stylesheet" href="style.css"></link>
+</head>
+
+<body>
+    <header>
+        <h1>
+            Pixabay Image search
+        </h1>
+        <form id="search-form">
+            <input type="text" id="search-field" name="search-field" placeholder="search">
+            <select id="color-selection" name="color-selection">
+                <option value="any-color">Any color</option>
+                <option value="grayscale">Grayscale</option>
+                <option value="transparent">transparent</option>
+                <option value="red">red</option>
+                <option value="orange">orange</option>
+                <option value="yellow">yellow</option>
+                <option value="green">green</option>
+                <option value="turquoise">turquoise</option>
+                <option value="blue">blue</option>
+                <option value="lilac">lilac</option>
+                <option value="pink">pink</option>
+                <option value="white">white</option>
+                <option value="gray">gray</option>
+                <option value="black">black</option>
+                <option value="brown">brown</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </header>
+    <main>
+        <div id="content-template">
+            <img src="">
+            <p class="tags">
+
+            </p>
+            <p class="photographer">
+                taken by: 
+                <span>
+                    
+                </span>
+            </p>
+        </div>
+    </main>
+    <footer>
+        <button id="previous-button">Previous</button>
+        <button id="next-button">Next</button>
+    </footer>
+</body>
+
+</html>
