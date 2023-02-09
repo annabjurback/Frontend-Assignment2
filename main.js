@@ -1,10 +1,23 @@
-let submitform = document.querySelector('#search-form')
+let submitForm = document.querySelector('#search-form');
 const pixaBayURL = "https://pixabay.com/api/";
 const apiKey = "33442830-1287a161e55eee9cb5de1bced"; 
 const image_type = "photo";
 const per_page = 10;
 
+submitForm.onsubmit = async event => {
+    event.preventDefault();
 
+    let response = await fetch(
+        'https://pixabay.com/api/?' +
+        '&q=' + submitForm.search-field.value +
+        '&image_type=' + image_type + 
+        '&per_page=' + per_page + 
+        '&colors=' + submitForm.color-selection.value +
+        '&key=' + apiKey
+        );
+
+    let json = await response.json();
+}
 
 // parameters: 
 // key
