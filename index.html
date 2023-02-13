@@ -1,62 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Picture searcher</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat">
-    <link rel="stylesheet" href="style.css"></link>
-    <script src="main.js" defer></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Picture searcher</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat">
+        <link rel="stylesheet" href="style.css">
+        </link>
+        <script src="main.js" defer></script>
 
-</head>
+    </head>
 
-<body>
-    <header>
-        <h1>
-            Pixabay Image search
-        </h1>
-        <form id="search-form">
-            <input type="text" id="search-field" name="searchField" placeholder="search">
-            <select id="color-selection" name="colorSelection">
-                <option value="any-color">Any color</option>
-                <option value="grayscale">Grayscale</option>
-                <option value="transparent">Transparent</option>
-                <option value="red">Red</option>
-                <option value="orange">Orange</option>
-                <option value="yellow">Yellow</option>
-                <option value="green">Green</option>
-                <option value="turquoise">Turquoise</option>
-                <option value="blue">Blue</option>
-                <option value="lilac">Lilac</option>
-                <option value="pink">Pink</option>
-                <option value="white">White</option>
-                <option value="gray">Gray</option>
-                <option value="black">Black</option>
-                <option value="brown">Brown</option>
-            </select>
-            <button type="submit">Submit</button>
-        </form>
-    </header>
-    <main>
-        <div id="content-template">
-            <img src="">
-            <p class="tags">
-                
-            </p>
-            <p class="photographer">
-                taken by: 
-                <span>
-                    
-                </span>
-            </p>
-        </div>
-    </main>
-    <footer>
-        <button id="previous-button" hidden>Previous</button>
-        <button id="next-button" hidden>Next</button>
-    </footer>
-</body>
+    <body>
+        <header>
+            <h1>
+                Pixabay Image search
+            </h1>
+            <form id="search-form">
+                <input type="text" id="search-field" name="searchField" placeholder="search">
+                <select id="color-selection" name="colorSelection">
+                    <option value="any-color">Any color</option>
+                    <option value="grayscale">Grayscale</option>
+                    <option value="transparent">Transparent</option>
+                    <option value="red">Red</option>
+                    <option value="orange">Orange</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="green">Green</option>
+                    <option value="turquoise">Turquoise</option>
+                    <option value="blue">Blue</option>
+                    <option value="lilac">Lilac</option>
+                    <option value="pink">Pink</option>
+                    <option value="white">White</option>
+                    <option value="gray">Gray</option>
+                    <option value="black">Black</option>
+                    <option value="brown">Brown</option>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+        </header>
+        <main>
+            <div id="content-template">
+                <img src="">
+                <p class="tags">
+
+                </p>
+                <p class="photographer">
+                    taken by:
+                    <span>
+
+                    </span>
+                </p>
+            </div>
+        </main>
+        <footer>
+            <button id="previous-button" hidden>Previous</button>
+            <button id="next-button" hidden>Next</button>
+        </footer>
+    </body>
 
 </html>

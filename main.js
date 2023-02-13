@@ -41,7 +41,7 @@ submitForm.onsubmit = async event => {
 
     if (responseJson.totalHits !== 0) {
         pageState.pageNumber = 1;
-        pageState.pageMax = Math.ceil(responseJson.totalHits/per_page);
+        pageState.pageMax = Math.ceil(responseJson.totalHits / per_page);
         loadImages(responseJson, pageState.pageNumber);
     }
 }
@@ -93,14 +93,14 @@ function setButtonAttributes() {
 }
 
 nextButton.onclick = async clickEvent => {
-    pageState.pageNumber ++;
+    pageState.pageNumber++;
 
     let url = 'https://pixabay.com/api/?' +
         '&q=' + searchWord +
         '&image_type=' + image_type +
         '&per_page=' + per_page +
         '&key=' + apiKey +
-        '&page=' + pageState.pageNumber ;
+        '&page=' + pageState.pageNumber;
 
     if (chosenColor !== "any-color") {
         url += '&colors=' + chosenColor;
@@ -113,14 +113,14 @@ nextButton.onclick = async clickEvent => {
 }
 
 previousButton.onclick = async clickEvent => {
-    pageState.pageNumber --;
+    pageState.pageNumber--;
 
     let url = 'https://pixabay.com/api/?' +
         '&q=' + searchWord +
         '&image_type=' + image_type +
         '&per_page=' + per_page +
         '&key=' + apiKey +
-        '&page=' + pageState.pageNumber ;
+        '&page=' + pageState.pageNumber;
 
     if (chosenColor !== "any-color") {
         url += '&colors=' + chosenColor;
