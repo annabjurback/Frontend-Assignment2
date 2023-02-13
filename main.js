@@ -2,7 +2,11 @@ let submitForm = document.querySelector('#search-form');
 const pixaBayURL = "https://pixabay.com/api/";
 const apiKey = "33442830-1287a161e55eee9cb5de1bced";
 const image_type = "photo";
-let contentTemplate = document.querySelector('#content-template'); // remove id etc
+const contentTemplate = document.querySelector('#content-template'); // remove id etc
+contentTemplate.remove();
+// doesnt work
+delete contentTemplate.id;
+
 let mainElement = document.querySelector('main');
 let previousButton = document.querySelector('#previous-button');
 let nextButton = document.querySelector('#next-button');
@@ -35,10 +39,11 @@ submitForm.onsubmit = async event => {
     searchResponse = await fetch(url);
     responseJson = await searchResponse.json();
 
-    pageState.pageNumber = 1;
-    pageState.pageMax = Math.ceil(responseJson.totalHits/per_page);
-    loadImages(responseJson, pageState.pageNumber);
-
+    if (responseJson.totalHits !== 0) {
+        pageState.pageNumber = 1;
+        pageState.pageMax = Math.ceil(responseJson.totalHits/per_page);
+        loadImages(responseJson, pageState.pageNumber);
+    }
 }
 
 function loadImages(responseJson, pageNumber) {
@@ -46,8 +51,11 @@ function loadImages(responseJson, pageNumber) {
         mainElement.removeChild(mainElement.firstChild);
     }
 
-    for (let hit of responseJson.hits) {
+    for (let [i, hit] of responseJson.hits.entries()) {
         let newPost = contentTemplate.cloneNode(true);
+
+        newPost.setAttribute('id', 'hit-' + i);
+
         let postImage = newPost.querySelector('img');
         let postTags = newPost.querySelector('.tags');
         let postPhotographer = newPost.querySelector('span');
