@@ -73,18 +73,18 @@ function loadImages(responseJson, pageNumber) {
 function setButtonAttributes() {
     if (pageState.pageNumber === 1) {
         nextButton.removeAttribute('hidden');
+        nextButton.setAttribute('disabled', '');
         if (pageState.pageNumber !== pageState.pageMax) {
             nextButton.removeAttribute('disabled');
         }
         previousButton.removeAttribute('hidden');
         previousButton.setAttribute('disabled', '');
     }
-    if (pageState.pageNumber < pageState.pageMax && pageState.pageNumber > 1) {
+    else if (pageState.pageNumber < pageState.pageMax && pageState.pageNumber > 1) {
         nextButton.removeAttribute('disabled');
         previousButton.removeAttribute('disabled');
     }
-
-    if (pageState.pageNumber === pageState.pageMax) {
+    else if (pageState.pageNumber === pageState.pageMax) {
         nextButton.removeAttribute('hidden');
         nextButton.setAttribute('disabled', '');
         previousButton.removeAttribute('hidden');
