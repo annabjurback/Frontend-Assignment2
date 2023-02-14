@@ -39,7 +39,12 @@ submitForm.onsubmit = async event => {
         loadImages(responseJson);
     }
     else {
-        alert('No search result...');
+        pageState.pageNumber = 0;
+        pageState.pageMax = 0;
+        mainElement.textContent = 'No search result...';
+
+        nextButton.setAttribute('hidden', '');
+        previousButton.setAttribute('hidden', '');
     }
 }
 
