@@ -2,11 +2,9 @@ let submitForm = document.querySelector('#search-form');
 const pixaBayURL = "https://pixabay.com/api/";
 const apiKey = "33442830-1287a161e55eee9cb5de1bced";
 const image_type = "photo";
-const contentTemplate = document.querySelector('#content-template'); // remove id etc
+const contentTemplate = document.querySelector('#content-template');
 contentTemplate.remove();
 contentTemplate.removeAttribute('id');
-// doesnt work
-delete contentTemplate.id;
 
 let mainElement = document.querySelector('main');
 let previousButton = document.querySelector('#previous-button');
