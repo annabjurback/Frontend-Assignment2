@@ -44,6 +44,9 @@ submitForm.onsubmit = async event => {
         pageState.pageMax = Math.ceil(responseJson.totalHits / per_page);
         loadImages(responseJson, pageState.pageNumber);
     }
+    else {
+        alert('No search result...');
+    }
 }
 
 function loadImages(responseJson, pageNumber) {
@@ -73,10 +76,14 @@ function loadImages(responseJson, pageNumber) {
 function setButtonAttributes() {
     if (pageState.pageNumber === 1) {
         nextButton.removeAttribute('hidden');
-        nextButton.setAttribute('disabled', '');
+
         if (pageState.pageNumber !== pageState.pageMax) {
             nextButton.removeAttribute('disabled');
         }
+        else{
+            nextButton.setAttribute('disabled', '');
+        }
+
         previousButton.removeAttribute('hidden');
         previousButton.setAttribute('disabled', '');
     }
