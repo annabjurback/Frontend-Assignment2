@@ -4,6 +4,7 @@ const apiKey = "33442830-1287a161e55eee9cb5de1bced";
 const image_type = "photo";
 const contentTemplate = document.querySelector('#content-template'); // remove id etc
 contentTemplate.remove();
+contentTemplate.removeAttribute('id');
 // doesnt work
 delete contentTemplate.id;
 
@@ -26,34 +27,29 @@ submitForm.onsubmit = async event => {
     searchWord = submitForm.searchField.value;
     chosenColor = submitForm.colorSelection.value;
 
-    let url = 'https://pixabay.com/api/?' +
-        '&q=' + searchWord +
-        '&image_type=' + image_type +
-        '&per_page=' + per_page +
-        '&key=' + apiKey;
-
-    if (chosenColor !== "any-color") {
-        url += '&colors=' + chosenColor;
-    }
+    let url = buildUrl();
 
     searchResponse = await fetch(url);
     responseJson = await searchResponse.json();
 
+    // Loads first page if response contains hits
     if (responseJson.totalHits !== 0) {
         pageState.pageNumber = 1;
         pageState.pageMax = Math.ceil(responseJson.totalHits / per_page);
-        loadImages(responseJson, pageState.pageNumber);
+        loadImages(responseJson);
     }
     else {
         alert('No search result...');
     }
 }
 
-function loadImages(responseJson, pageNumber) {
+// Loads images from a respons
+function loadImages(responseJson) {
     while (mainElement.firstChild) {
         mainElement.removeChild(mainElement.firstChild);
     }
 
+    // Builds the id attribute for each hit
     for (let [i, hit] of responseJson.hits.entries()) {
         let newPost = contentTemplate.cloneNode(true);
 
@@ -73,6 +69,8 @@ function loadImages(responseJson, pageNumber) {
     setButtonAttributes();
 }
 
+// Set button attributes depending on page state
+// Runs when images are loaded into the page
 function setButtonAttributes() {
     if (pageState.pageNumber === 1) {
         nextButton.removeAttribute('hidden');
@@ -80,7 +78,7 @@ function setButtonAttributes() {
         if (pageState.pageNumber !== pageState.pageMax) {
             nextButton.removeAttribute('disabled');
         }
-        else{
+        else {
             nextButton.setAttribute('disabled', '');
         }
 
@@ -99,58 +97,43 @@ function setButtonAttributes() {
     }
 }
 
+// Updates page state and fetches the next 'page' of images
 nextButton.onclick = async clickEvent => {
     pageState.pageNumber++;
 
-    let url = 'https://pixabay.com/api/?' +
-        '&q=' + searchWord +
-        '&image_type=' + image_type +
-        '&per_page=' + per_page +
-        '&key=' + apiKey +
-        '&page=' + pageState.pageNumber;
-
-    if (chosenColor !== "any-color") {
-        url += '&colors=' + chosenColor;
-    }
+    let url = buildUrl();
 
     searchResponse = await fetch(url);
     responseJson = await searchResponse.json();
 
-    loadImages(responseJson, pageState.pageNumber);
+    loadImages(responseJson);
 }
 
 previousButton.onclick = async clickEvent => {
     pageState.pageNumber--;
 
+    let url = buildUrl();
+
+    searchResponse = await fetch(url);
+    responseJson = await searchResponse.json();
+
+    loadImages(responseJson);
+}
+
+function buildUrl() {
     let url = 'https://pixabay.com/api/?' +
         '&q=' + searchWord +
         '&image_type=' + image_type +
         '&per_page=' + per_page +
-        '&key=' + apiKey +
-        '&page=' + pageState.pageNumber;
+        '&key=' + apiKey;
+
+    if(pageState.pageNumber !== 0) {
+        url += '&page=' + pageState.pageNumber;
+    }
 
     if (chosenColor !== "any-color") {
         url += '&colors=' + chosenColor;
     }
 
-    searchResponse = await fetch(url);
-    responseJson = await searchResponse.json();
-
-    loadImages(responseJson, pageState.pageNumber);
+    return url;
 }
-
-
-// parameters:
-// key
-// q (str) - A URL encoded search term. If omitted, all images are returned. May not exceed 100 characters.
-// image_type (str)
-// colors (str)
-// page (int) - Returned search results are paginated. Use this parameter to select the page number. Default: 1
-// per_page (int) - Determine the number of results per page.
-
-// Response:
-// totalHits
-// hits[index].previewURL
-// hits[index].tag
-// hits[index].user
-
